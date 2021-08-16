@@ -1,7 +1,6 @@
 package balancedbrackets
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -38,7 +37,6 @@ func TestGenerate(t *testing.T) {
 
 	for i := 0; i < 10; i++ {
 		got := Generate()
-		fmt.Println(got)
 
 		if got == prev {
 			t.Fatalf("returned the same string")
