@@ -72,7 +72,7 @@ func TestIsBalanced(t *testing.T) {
 func TestSplitToHalves(t *testing.T) {
 	t.Run("return first halve", func(t *testing.T) {
 		s := []string{"a", "b", "l", "e"}
-		got := firstHalf(s)
+		got, _ := firstHalf(s)
 		want := "ab"
 
 		if got != want {
@@ -82,11 +82,31 @@ func TestSplitToHalves(t *testing.T) {
 
 	t.Run("return second halve", func(t *testing.T) {
 		s := []string{"a", "b", "l", "e"}
-		got := secondHalf(s)
+		got, _ := secondHalf(s)
 		want := "le"
 
 		if got != want {
 			t.Errorf("got %q want %q", got, want)
+		}
+	})
+
+	t.Run("first half: return error for odd slice length", func(t *testing.T) {
+		s := []string{"v", "i", "n", "c", "e", "n", "t"}
+		_, got := firstHalf(s)
+		err := OddSliceLength
+
+		if got != err {
+			t.Errorf("got %q want %q", got, err)
+		}
+	})
+
+	t.Run("second half: return error for odd slice length", func(t *testing.T) {
+		s := []string{"v", "i", "n", "c", "e"}
+		_, got := secondHalf(s)
+		err := OddSliceLength
+
+		if got != err {
+			t.Errorf("got %q want %q", got, err)
 		}
 	})
 
