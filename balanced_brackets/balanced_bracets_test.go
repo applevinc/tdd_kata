@@ -1,6 +1,7 @@
 package balancedbrackets
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -43,4 +44,60 @@ func TestGenerate(t *testing.T) {
 		}
 		prev = got
 	}
+}
+
+func TestIsBalanced(t *testing.T) {
+	t.Run("balanced bracket string", func(t *testing.T) {
+		s := "[[]]"
+		got := isBalanced(s)
+		want := "OK"
+
+		if got != want {
+			t.Errorf("got %q want %q", got, want)
+		}
+	})
+
+	t.Run("not balanced bracket string", func(t *testing.T) {
+		s := "[["
+		got := isBalanced(s)
+		want := "FAIL"
+
+		if got != want {
+			t.Errorf("got %q want %q", got, want)
+		}
+	})
+
+}
+
+func TestSplitToHalves(t *testing.T) {
+	t.Run("return first halve", func(t *testing.T) {
+		s := []string{"a", "b", "l", "e"}
+		got := firstHalf(s)
+		want := "ab"
+
+		if got != want {
+			t.Errorf("got %q want %q", got, want)
+		}
+	})
+
+	t.Run("return second halve", func(t *testing.T) {
+		s := []string{"a", "b", "l", "e"}
+		got := secondHalf(s)
+		want := "le"
+
+		if got != want {
+			t.Errorf("got %q want %q", got, want)
+		}
+	})
+
+	t.Run("return [dave] as [da ve]", func(t *testing.T) {
+		s := "dave"
+		got := splitToHalves(s)
+		want := []string{"da", "ve"}
+
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got %q want %q", got, want)
+		}
+	})
+
 }

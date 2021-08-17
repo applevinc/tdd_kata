@@ -3,8 +3,9 @@ package main
 import (
 	"fmt"
 	"math/rand"
-	bk "tdd_kata/balanced_brackets"
 	"time"
+
+	bk "tdd_kata/balanced_brackets"
 )
 
 func main() {
