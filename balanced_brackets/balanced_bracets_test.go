@@ -121,3 +121,13 @@ func TestSplitToHalves(t *testing.T) {
 	})
 
 }
+
+func TestIsCharsEqual(t *testing.T) {
+	s := "vvvvvvvvvvvvv"
+	got := isCharsEqual(s)
+	want := true
+
+	if got != want {
+		t.Errorf("got %v want %v", got, want)
+	}
+}
